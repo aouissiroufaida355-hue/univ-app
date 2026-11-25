@@ -18,7 +18,7 @@ services:
       retries: 10
 
   web:
-    build: ./app
+    build: .
     container_name: univ-web
     restart: unless-stopped
     environment:
