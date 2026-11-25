@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h1>Welcome to Atlas University</h1>
+<p>Atlas University (fictional) is a modern institution offering programs in engineering, science and business. This portal gives students, teachers and visitors access to departments and official announcements.</p></div>
+<h2>Recent announcements</h2>
+{% for a in announcements %}<div class="card"><h3>{{ a.title }}</h3><small>{{ a.created_at.strftime('%Y-%m-%d %H:%M') }}</small><p>{{ a.content }}</p></div>{% endfor %}
+{% endblock %}

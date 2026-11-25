@@ -1,0 +1,9 @@
+body{font-family:system-ui,sans-serif;margin:0;background:#f4f6fa;color:#1c2333}
+header{background:#1f3a5f;color:#fff;padding:14px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+header a{color:#fff;text-decoration:none}header .brand{font-weight:700;font-size:1.2rem;margin-right:auto}
+main{max-width:900px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px #0002}
+.card small{color:#667}.flash{background:#e6f4ea;padding:10px;border-radius:6px;margin-bottom:12px}
+input,textarea{width:100%;padding:8px;margin:6px 0 12px;box-sizing:border-box}
+button,.btn{background:#1f3a5f;color:#fff;border:0;padding:8px 14px;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block}
+.danger{background:#b3261e}form.inline{display:inline}

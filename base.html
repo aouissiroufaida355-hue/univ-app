@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<header><a class="brand" href="/">Atlas University</a>
+<a href="/">Home</a><a href="/departments">Departments</a><a href="/news">News</a>
+{% if session.admin %}<a href="/admin">Admin</a>
+<form class="inline" method="post" action="/logout"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button>Logout</button></form>
+{% else %}<a href="/login">Admin login</a>{% endif %}</header>
+<main>{% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+{% block content %}{% endblock %}</main></body></html>

@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: univ-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data     # persistance
+    networks: [backend]
+    # PAS de "ports:" -> la DB n'est pas exposee en dehors du reseau Docker
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  web:
+    build: ./app
+    container_name: univ-web
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      SECRET_KEY: ${SECRET_KEY}
+      ADMIN_USER: ${ADMIN_USER}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    ports:
+      - "8000:8000"                         # seul port publie
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [backend]
+
+volumes:
+  pgdata:
+
+networks:
+  backend:

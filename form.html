@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}<h1>{{ 'Edit' if a else 'New' }} announcement</h1>
+<form method="post" class="card"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<label>Title<input name="title" required maxlength="200" value="{{ a.title if a else '' }}"></label>
+<label>Content<textarea name="content" rows="6" required>{{ a.content if a else '' }}</textarea></label>
+<button>Save</button> <a class="btn" href="/admin">Cancel</a></form>
+{% endblock %}
